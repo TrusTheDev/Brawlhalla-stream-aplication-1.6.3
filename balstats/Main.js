@@ -34,8 +34,7 @@ rl.question('Ingresa el nombre del jugador: ', (name) => {
 
 
 //getPlayerLegends(array)
-
-
+GetPlayerPr(mapPlayers.get("Power"), 1)
 
 
 
