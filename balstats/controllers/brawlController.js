@@ -4,7 +4,7 @@ const sdk = require("@bmg-esports/sdk")
 
 async function FindPlayer(id) {
     const result = await sdk.getPlayer({smashId: id});
-    fs.writeFileSync("../stats/name.txt", result.player.name, 'utf8');
+    fs.writeFileSync("./stats/name.txt", result.player.name, 'utf8');
     return console.log(result)
 }
 
@@ -18,8 +18,18 @@ async function getPlayerLegends(smashID){
     const result = await sdk.getPlayerLegends({entrantSmashIds: smashID,maxResults: 1,isOfficial: false})
     return console.log(result)
 }
-const Lista = [1999846] 
+
+function hola(){
+    console.log("hola mundo")
+}
+//const Lista = [1999846] 
 //getPlayerLegends(Lista)
 
-FindPlayer(322393)
+module.exports = {
+    FindPlayer,
+    GetPlayerPr,
+    getPlayerLegends,
+    hola
+}
+
 
