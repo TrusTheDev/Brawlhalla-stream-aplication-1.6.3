@@ -1,0 +1,30 @@
+{
+  "name": "balstats",
+  "version": "1.1.0",
+  "description": "Aplicacion de BAL hecha para reflegar información de la API de BMG a una transmisión",
+  "main": "Main.js",
+  "bin": {
+    "balstats": "./Main.js"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": " Ivan Viegas & Maximiliano Ballerini",
+  "license": "MIT",
+  "dependencies": {
+    "@bmg-esports/sdk": "^1.0.7",
+    "jimp": "^1.6.0",
+    "pkg": "^5.8.1",
+    "sharp": "^0.33.5"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/sharp/build/Release/**/*",
+      "node_modules/sharp/vendor/lib/**/*"
+    ]
+  },
+  "assets": [
+    "node_modules/sharp/build/Release",
+    "node_modules/sharp/vendor/lib"
+  ]
+}
