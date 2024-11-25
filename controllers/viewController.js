@@ -133,6 +133,20 @@ async function getAllplayers(){
     return;
   }
 
+  async function displayLogo() {
+       fs.readFile("balstats-logo.txt", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data);
+      }
+    });
+  }  
+  
+
+  
+ 
+
   module.exports = {
     question,
     salirDelPrograma,
@@ -143,4 +157,5 @@ async function getAllplayers(){
     deletePlayer,
     about,
     getAllplayersOption,
+    displayLogo,
   }
