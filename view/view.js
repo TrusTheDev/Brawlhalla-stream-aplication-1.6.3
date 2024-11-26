@@ -1,7 +1,8 @@
-const { question, salirDelPrograma, initProgramView, getAllplayers, putPlayer, editPlayer, deletePlayer, about, getAllplayersOption } = require('../controllers/viewController')
-
+const { question, salirDelPrograma, initProgramView, displayLogo, putPlayer, editPlayer, deletePlayer, about, getAllplayersOption } = require('../controllers/viewController')
 async function main() {
     console.log("Iniciando el programa...");
+    //Arreglar el logo
+    await displayLogo();
     console.log("Bienvenido a ballstats!, porfavor elija una opción \n 0:salir del programa \n 1:Iniciar programa \n 2: listar jugadores \n 3: agregar jugador \n 4: editar agregar \n 5: eliminar usuario \n 6: about \n")
     let option = ""
     while(option != '0'){
