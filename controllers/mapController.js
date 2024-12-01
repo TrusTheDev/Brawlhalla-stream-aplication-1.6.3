@@ -4,7 +4,6 @@ const file = reader.readFile('./resources/playerRepository/ExcelRepository/playe
 const sheets = file.SheetNames
 
 //Mueve todos los players de la lista de excel al map
-pushToMap()
 function pushToMap(){
    for(let i = 0; i < sheets.length; i++)
        {
@@ -17,6 +16,7 @@ function pushToMap(){
 }
 
 //Tiene que mejorarse, el algoritmo crea nuevas hojas en vez de añadir los que no están.
+//deprecated
 function mapToExcel(){
    function playerInMap(player, smashID){
       this.player = player;
@@ -31,10 +31,13 @@ function mapToExcel(){
   
   const ws = reader.utils.json_to_sheet(data)
   
-  reader.utils.book_append_sheet(file,ws)
+  reader.utils.book_append_sheet(file,ws, 'Sheet1')
   
   // Writing to our file
   reader.writeFile(file,'./resources/playerRepository/ExcelRepository/players.xlsx')
 }
 
-
+module.exports = {
+   pushToMap,
+   mapToExcel
+};
