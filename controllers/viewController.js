@@ -22,7 +22,7 @@ function question(question) {
   }
 
 //Arreglar la var palabra, que se actualiza en cada iteración, la idea es que se vaya actualizando sin que tenga que volver a repetirse en la consola
-async function initProgramView() {
+async function initSingleModeView() {
   let option;
       while(option != '0'){
         process.stdout.write('\x1Bc');
@@ -48,13 +48,12 @@ async function initProgramView() {
       } 
   }
   
-
 async function getAllplayersOption(){
   process.stdout.write('\x1Bc');
   let option = "";
   while(option != "0"){
     option = await question("¿listar?, ingrese cualquier tecla, 0: para salir. ")
-    getAllplayers();
+    getAllplayersValues();
     if(option == "0"){
       process.stdout.write('\x1Bc');
       console.log("retornando")
@@ -62,69 +61,20 @@ async function getAllplayersOption(){
     }
   }
 }  
+
+//new function
+async function getAllplayersValues() {
+  for(i=0; i<mapPlayers.size; i++){
+    console.log(mapPlayers.entries());
+  }
+}
+
 async function getAllplayers(){
     for(const key of mapPlayers.keys()){
       console.log(key)
     }
     return;
   }  
-
-  async function putPlayer(){
-    process.stdout.write('\x1Bc');
-    let option = "";
-    while(option != "0"){
-      option = await question("¿Agregar jugadores?, ingrese cualquier tecla, 0: para salir. ")
-      if(option != "0"){
-        let nombre = await question("Ingrese nombre del jugador (debes hacerlo manualmente)")
-        let id = await question("Ingrese brawlhalla id")
-        mapPlayers.set(nombre, Number(id));
-      }
-    } 
-    process.stdout.write('\x1Bc');
-    console.log("Retornando")
-    return;
-  }
-
-  async function editPlayer() {
-    process.stdout.write('\x1Bc');
-    let option = "";
-    while(option != "0"){
-      getAllplayers();
-      option = await question("¿Editar otro jugador?, ingrese cualquier tecla, 0: para salir. ")
-      if(option != "0"){
-        var nombre = await question("Ingrese nombre del jugador que desea editar")
-        var id = await question("Ingrese brawlhalla id")
-        if(mapPlayers.has(nombre)){
-          console.log("Editado con éxito")
-          mapPlayers.set(nombre, number(id))
-        }
-        else if(!mapPlayers.has(nombre, id)){console.log("El jugador ya existe")}
-      }
-    } 
-    process.stdout.write('\x1Bc');
-    console.log("Retornando")
-    return;
-  }
-
-  async function deletePlayer() {
-    process.stdout.write('\x1Bc');
-    let option = "";
-    while(option != "0"){
-      getAllplayers();
-      option = await question("¿Editar otro jugador?, ingrese cualquier tecla, 0: para salir. ")
-      let nombre = await question("Ingresa un jugador para eliminar");
-      if(mapPlayers.has(nombre)){
-        mapPlayers.delete(nombre)
-      }
-      else if (!mapPlayers.has(nombre)){
-        console.log("El nombre del jugador es inválido")
-      }
-    }
-    process.stdout.write('\x1Bc');
-    console.log("Retornando")
-    return;
-    
-  }
 
   async function about(){
     process.stdout.write('\x1Bc');
@@ -150,12 +100,10 @@ async function getAllplayers(){
   module.exports = {
     question,
     salirDelPrograma,
-    initProgramView,
+    initSingleModeView,
     getAllplayers,
-    putPlayer,
-    editPlayer,
-    deletePlayer,
     about,
     getAllplayersOption,
     displayLogo,
+    getAllplayersValues
   }
