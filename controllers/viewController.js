@@ -1,5 +1,5 @@
 const readline = require('readline');
-const { searchPlayerInfo } = require('../controllers/brawlController')
+const { searchPlayerInfo1v1, searchPlayerInfo2v2 } = require('../controllers/brawlController')
 const { mapPlayers } = require ('../resources/playerRepository/players')
 const fs = require('fs');
 const sharp = require('sharp');
@@ -33,7 +33,7 @@ async function initSingleModeView() {
           option = await question("")
           //Faltá limpiar la consola aca
           if(mapPlayers.get(option) != undefined){
-              searchPlayerInfo(option);
+              searchPlayerInfo1v1(option, "player1");
           }
 
           else if(option == "0"){
@@ -47,6 +47,38 @@ async function initSingleModeView() {
           }
       } 
   }
+
+  async function initDoubleModeView() {
+    let option1;
+    let option2;
+    let cont = 1
+        while(option1 != '0' || option2 != '0'){
+          process.stdout.write('\x1Bc');
+            const palabra = fs.readFileSync('resources/configs/lastoption.txt', 'utf8').trim();
+            console.log('----------->[' + palabra + ']<----------- \n');
+            getAllplayers()
+            console.log('0: para ir atras \n');
+            option1 = await question("Ingrese el nombre del jugador " + cont + "\n" )
+            cont++
+            option2 = await question("Ingrese el nombre del jugador " + cont + "\n" )
+            //Faltá limpiar la consola aca
+            if(mapPlayers.get(option1) != undefined && mapPlayers.get(option1) != undefined){
+                searchPlayerInfo2v2(option1, "player1");
+                searchPlayerInfo2v2(option2, "player2");
+                cont--
+            }
+  
+            else if(option1 == "0" || option2 == '0'){
+              process.stdout.write('\x1Bc');
+              console.log("Retornando")
+              return;
+            }
+        
+            else if(mapPlayers.get(option1) == undefined || mapPlayers.get(option2) == undefined){
+                console.log("nombre inválido")
+            }
+        } 
+    }
   
 async function getAllplayersOption(){
   process.stdout.write('\x1Bc');
@@ -64,9 +96,7 @@ async function getAllplayersOption(){
 
 //new function
 async function getAllplayersValues() {
-  for(i=0; i<mapPlayers.size; i++){
     console.log(mapPlayers.entries());
-  }
 }
 
 async function getAllplayers(){
@@ -105,5 +135,6 @@ async function getAllplayers(){
     about,
     getAllplayersOption,
     displayLogo,
-    getAllplayersValues
+    getAllplayersValues,
+    initDoubleModeView
   }

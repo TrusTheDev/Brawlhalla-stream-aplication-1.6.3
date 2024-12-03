@@ -1,4 +1,4 @@
-const { question, salirDelPrograma, initSingleModeView, displayLogo, about, getAllplayersOption, } = require('../controllers/viewController')
+const { question, salirDelPrograma, initSingleModeView, displayLogo, about, getAllplayersOption, initDoubleModeView, } = require('../controllers/viewController')
 const { pushToMap } = require('../controllers/mapController')
 async function main() {
     console.log("Iniciando el programa...");
@@ -22,6 +22,7 @@ async function main() {
             }
             else {
                 //opción para dobules
+                await initDoubleModeView();
             }
             main()
             break;

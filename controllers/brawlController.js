@@ -3,75 +3,88 @@ const fs = require('fs');
 const sdk = require("@bmg-esports/sdk");
 const { mapPlayers } = require('../resources/playerRepository/players');
 
-async function FindPlayer(id) {
+async function FindPlayer(id, mode, player) {
     try{
     const result = await sdk.getPlayer({smashId: id});
-    fs.writeFileSync("./stats/name.txt", (result.player.name.toString()).toUpperCase(), 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/name.txt`, (result.player.name.toString()).toUpperCase(), 'utf8');
     return console.log(result)
     }catch (e) {console.log("Error con el id")}
 }
 
-async function GetPlayerPr(id,gm){
+async function GetPlayerPr(id,gm,mode,player){
     try{
     const result = await sdk.getPlayerPR({entrantSmashId: id, gameMode: gm})
-    fs.writeFileSync("./stats/earnings.txt", "$ " + result.earnings.toString() , 'utf8');
-    fs.writeFileSync("./stats/top32.txt", result.pr.top32.toString() , 'utf8');
-    fs.writeFileSync("./stats/top8.txt", result.pr.top8.toString() , 'utf8');
-    fs.writeFileSync("./stats/0bronze.txt", result.pr.bronze.toString() , 'utf8');
-    fs.writeFileSync("./stats/0gold.txt", result.pr.gold.toString() , 'utf8');
-    fs.writeFileSync("./stats/0silver.txt", result.pr.silver.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/earnings.txt`, "$ " + result.earnings.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/top32.txt`, result.pr.top32.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/top8.txt`, result.pr.top8.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/0bronze.txt`, result.pr.bronze.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/0gold.txt`, result.pr.gold.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/0silver.txt`, result.pr.silver.toString() , 'utf8');
     if (result.pr.powerRanking.toString() == '0') {
-        fs.writeFileSync("./stats/pr.txt", "-" , 'utf8');
+        fs.writeFileSync(`./stats/${mode}/${player}/pr.txt`, "-" , 'utf8');
     } else {
-        fs.writeFileSync("./stats/pr.txt", result.pr.powerRanking.toString() , 'utf8');
+        fs.writeFileSync(`./stats/${mode}/${player}/pr.txt`, result.pr.powerRanking.toString() , 'utf8');
     }
     return console.log(result)
     } catch (e){console.log("Error con el id o gm")}
 }
 
 //Tenes que poner el smashID adentro del arreglo ES UNA MIERDA ESTO
-async function getPlayerLegends(smashID){   
+async function getPlayerLegends(smashID, mode, player){   
     try {
     const result = await sdk.getPlayerLegends({entrantSmashIds: smashID,maxResults: 1,isOfficial: false})
     
         const personaje = result.legends
         const nombre = personaje[0].name.toLowerCase() + '.png'
         sharp('resources/playersImgs/' + nombre)
-        .toFile('./stats/splash.png');
+        .toFile(`./stats/${mode}/${player}/splash.png`);
         return console.log(result)
       } catch (error) {
         console.log("Usuario no tiene personajes reportados u hubo un error con el nombre") 
         sharp('resources/playersImgs/random.png')
-        .toFile('./stats/splash.png');
+        .toFile(`./stats/${mode}/${player}/splash.png`);
       }
 
       
 }
 
-async function playerInfoRandom(nombre){
-    fs.writeFileSync("./stats/name.txt", nombre, 'utf8');
-    fs.writeFileSync("./stats/earnings.txt", "$ " + "0" , 'utf8');
-    fs.writeFileSync("./stats/pr.txt", "0" , 'utf8');
-    fs.writeFileSync("./stats/top32.txt", "0" , 'utf8');
-    fs.writeFileSync("./stats/top8.txt", "0" , 'utf8');
-    fs.writeFileSync("./stats/0bronze.txt", "0" , 'utf8');
-    fs.writeFileSync("./stats/0gold.txt", "0" , 'utf8');
-    fs.writeFileSync("./stats/0silver.txt", "0" , 'utf8');
-    fs.writeFileSync("resources/configs/lastoption.txt", nombre , 'utf8');
-    sharp('resources/playersImgs/random.png').toFile('./stats/splash.png');
+async function playerInfoRandom(nombre, mode, player){
+    fs.writeFileSync(`./stats/${mode}/${player}/name.txt`, nombre, 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/earnings.txt`, "0" , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/pr.txt`, "0" , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/top32.txt`, "0" , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/top8.txt`, "0" , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/0bronze.txt`, "0" , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/0gold.txt`, "0" , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/0silver.txt`, "0" , 'utf8');
+    fs.writeFileSync(`resources/configs/lastoption.txt`, nombre , 'utf8');
+    sharp('resources/playersImgs/random.png').toFile(`./stats/${mode}/${player}/splash.png`);
     console.log(result)
 
 }
 
-function searchPlayerInfo(nombre) {
+function searchPlayerInfo1v1(nombre,player) {
     try{
-    var result = GetPlayerPr(mapPlayers.get(nombre), 1);
+    var result = GetPlayerPr(mapPlayers.get(nombre), 1, "1v1", player);
     console.log(result)
-    var result = FindPlayer(mapPlayers.get(nombre));
+    var result = FindPlayer(mapPlayers.get(nombre), "1v1", player);
     console.log(result)
     const array = [mapPlayers.get(nombre)];
     console.log(result)  
-    var result = getPlayerLegends(array);
+    var result = getPlayerLegends(array, "1v1", player);
+    fs.writeFileSync("resources/configs/lastoption.txt", nombre , 'utf8');
+    } catch (e) {console.log("Nombre inválido")}
+  }
+
+  function searchPlayerInfo2v2(nombre,player) {
+    try{
+    var result = GetPlayerPr(mapPlayers.get(nombre), 2, "2v2", player);
+    console.log(result)
+    var result = FindPlayer(mapPlayers.get(nombre), "2v2", player);
+    console.log(result)
+    const array = [mapPlayers.get(nombre)];
+    console.log(result)  
+    var result = getPlayerLegends(array, "2v2", player);
     fs.writeFileSync("resources/configs/lastoption.txt", nombre , 'utf8');
     } catch (e) {console.log("Nombre inválido")}
   }
@@ -83,7 +96,8 @@ module.exports = {
     GetPlayerPr,
     getPlayerLegends,
     playerInfoRandom,
-    searchPlayerInfo,
+    searchPlayerInfo1v1,
+    searchPlayerInfo2v2,
 }
 
 
