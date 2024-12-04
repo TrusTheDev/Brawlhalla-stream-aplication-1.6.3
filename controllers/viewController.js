@@ -57,7 +57,6 @@ async function initSingleModeView() {
 
 async function initDoubleModeView() {
   let player;  
-  let cont = await countFoldersInDirectory('./stats')
   getAllplayers()    
   console.log('0: para ir atras \n');
   while(player != '0'){
@@ -72,7 +71,45 @@ async function initDoubleModeView() {
     process.stdout.write('\x1Bc');
     console.log("Retornando")
     return;
+  }
+  
+async function initSingleConfrontMode(){
+  let player;  
+  let cont = await countFoldersInDirectory('./stats/1v1')
+  getAllplayers()    
+  console.log('0: para ir atras \n');
+  while(player != '0'){
+    for(i = 1; i<=cont; i++ || player != '0'){
+        console.log("Introduce el nombre del jugador " + i)
+        player = await askForPlayer();
+        if (player != '0'){
+          await searchPlayerInfo1v1(player,`player${i}`)
+        }
+      }
   }  
+    process.stdout.write('\x1Bc');
+    console.log("Retornando")
+    return;
+}
+
+async function initDoubleConfrontMode(){
+  let player;  
+  let cont = await countFoldersInDirectory('./stats/2v2')
+  getAllplayers()    
+  console.log('0: para ir atras \n');
+  while(player != '0'){
+    for(i = 1; i<=cont; i++ || player != '0'){
+        console.log("Introduce el nombre del jugador " + i)
+        player = await askForPlayer();
+        if (player != '0'){
+          await searchPlayerInfo2v2(player,`player${i}`)
+        }
+      }
+  }  
+    process.stdout.write('\x1Bc');
+    console.log("Retornando")
+    return;
+}  
   
 async function getAllplayersOption(){
   process.stdout.write('\x1Bc');
@@ -118,5 +155,7 @@ async function getAllplayersOption(){
     getAllplayersOption,
     displayLogo,
     getAllplayersValues,
-    initDoubleModeView
+    initDoubleModeView,
+    initSingleConfrontMode,
+    initDoubleConfrontMode,
   }
