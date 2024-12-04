@@ -2,6 +2,7 @@ const reader = require('xlsx')
 const { mapPlayers } = require('../resources/playerRepository/players');
 const file = reader.readFile('./resources/playerRepository/ExcelRepository/players.xlsx')
 const sheets = file.SheetNames
+const fs = require('fs');
 
 //Mueve todos los players de la lista de excel al map
 function pushToMap(){
@@ -15,6 +16,28 @@ function pushToMap(){
        }
 }
 
+//new function
+async function getAllplayersValues() {
+   console.log(mapPlayers.entries());
+}
+
+async function getAllplayers(){
+   process.stdout.write('\x1Bc');
+   const palabra = fs.readFileSync('resources/configs/lastoption.txt', 'utf8').trim();
+   console.log('----------->[' + palabra + ']<----------- \n');
+     for(const key of mapPlayers.keys()){
+       console.log(key)
+     }
+     return;
+   }  
+
+async function playerFound(player){
+   return mapPlayers.has(player)
+}   
+
 module.exports = {
    pushToMap,
+   getAllplayersValues,
+   getAllplayers,
+   playerFound,
 };

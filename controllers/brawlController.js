@@ -1,7 +1,9 @@
 const sharp = require('sharp');
 const fs = require('fs');
+const fs1 = require('fs').promises;
 const sdk = require("@bmg-esports/sdk");
 const { mapPlayers } = require('../resources/playerRepository/players');
+const { count } = require('console');
 
 async function FindPlayer(id, mode, player) {
     try{
@@ -63,7 +65,8 @@ async function playerInfoRandom(nombre, mode, player){
 
 }
 
-function searchPlayerInfo1v1(nombre,player) {
+async function searchPlayerInfo1v1(nombre,player) {
+    console.log(player)
     try{
     var result = GetPlayerPr(mapPlayers.get(nombre), 1, "1v1", player);
     console.log(result)
@@ -76,7 +79,7 @@ function searchPlayerInfo1v1(nombre,player) {
     } catch (e) {console.log("Nombre inválido")}
   }
 
-  function searchPlayerInfo2v2(nombre,player) {
+async function searchPlayerInfo2v2(nombre,player) {
     try{
     var result = GetPlayerPr(mapPlayers.get(nombre), 2, "2v2", player);
     console.log(result)
@@ -89,6 +92,21 @@ function searchPlayerInfo1v1(nombre,player) {
     } catch (e) {console.log("Nombre inválido")}
   }
 
+  async function countFoldersInDirectory(directoryPath) {
+    try {
+        // Leer el contenido de la carpeta
+        const files = await fs1.readdir(directoryPath, { withFileTypes: true });
+
+        // Filtrar solo los directorios
+        const directories = files.filter(file => file.isDirectory());
+
+        // Retornar la cantidad de carpetas encontradas
+        return directories.length;
+    } catch (error) {
+        console.error('Error al leer el directorio:', error);
+        return 0;  // Retorna 0 si ocurre un error
+    }
+}
 
 
 module.exports = {
@@ -98,6 +116,7 @@ module.exports = {
     playerInfoRandom,
     searchPlayerInfo1v1,
     searchPlayerInfo2v2,
+    countFoldersInDirectory
 }
 
 
