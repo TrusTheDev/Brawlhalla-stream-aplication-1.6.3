@@ -1,4 +1,4 @@
-const { question, salirDelPrograma, initSingleModeView, displayLogo, about, getAllplayersOption, initDoubleModeView, } = require('../controllers/viewController')
+const { question, salirDelPrograma, initSingleModeView, displayLogo, about, getAllplayersOption, initDoubleModeView,initSingleConfrontMode, initDoubleConfrontMode } = require('../controllers/viewController')
 const { pushToMap } = require('../controllers/mapController')
 async function main() {
     console.log("Iniciando el programa...");
@@ -21,7 +21,6 @@ async function main() {
                 await initSingleModeView();
             }
             else {
-                //opción para dobules
                 await initDoubleModeView();
             }
             main()
@@ -31,11 +30,10 @@ async function main() {
             option = await question("1 para singles 2 para doubles");
             console.log(' Iniciando programa ');
             if(option == '1'){
-                await initSingleModeView();
+                await initSingleConfrontMode();
             }
             else {
-                //opción para dobules
-                await initDoubleModeView();
+                await initDoubleConfrontMode();
             }
             main()
             break;
