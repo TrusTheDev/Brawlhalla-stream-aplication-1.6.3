@@ -9,6 +9,9 @@ async function FindPlayer(id, mode, player) {
     try{
     const result = await sdk.getPlayer({smashId: id});
     fs.writeFileSync(`./stats/${mode}/${player}/name.txt`, (result.player.name.toString()).toUpperCase(), 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/twitch.txt`, result.player.twitch.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/twitter.txt`, result.player.twitter.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/country.txt`, result.player.country.toString() , 'utf8');
     return console.log(result)
     }catch (e) {console.log("Error con el id")}
 }
@@ -19,9 +22,10 @@ async function GetPlayerPr(id,gm,mode,player){
     fs.writeFileSync(`./stats/${mode}/${player}/earnings.txt`, "$ " + result.earnings.toString() , 'utf8');
     fs.writeFileSync(`./stats/${mode}/${player}/top32.txt`, result.pr.top32.toString() , 'utf8');
     fs.writeFileSync(`./stats/${mode}/${player}/top8.txt`, result.pr.top8.toString() , 'utf8');
-    fs.writeFileSync(`./stats/${mode}/${player}/0bronze.txt`, result.pr.bronze.toString() , 'utf8');
-    fs.writeFileSync(`./stats/${mode}/${player}/0gold.txt`, result.pr.gold.toString() , 'utf8');
-    fs.writeFileSync(`./stats/${mode}/${player}/0silver.txt`, result.pr.silver.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/bronze.txt`, result.pr.bronze.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/gold.txt`, result.pr.gold.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/silver.txt`, result.pr.silver.toString() , 'utf8');
+    fs.writeFileSync(`./stats/${mode}/${player}/region.txt`, result.pr.region.toString() , 'utf8');
     if (result.pr.powerRanking.toString() == '0') {
         fs.writeFileSync(`./stats/${mode}/${player}/pr.txt`, "-" , 'utf8');
     } else {
