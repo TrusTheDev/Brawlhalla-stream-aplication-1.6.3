@@ -1,5 +1,5 @@
 # Ballstats 1.6.2
-[TOC]
+[ TOC ]
 
 Description
 -------------
