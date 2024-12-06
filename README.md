@@ -68,7 +68,7 @@ Yes, just copy and paste player file in order at stats/[1v1 or 2v2]
 About
 -------------
 Program developed by Mr.Ivansito, Maxy
-###Contact info
+### Contact info
 [Mr.Ivansito](mailto:ivanbordeira2015@hotmail.com)
 [Maxy](mailto:maxib193@gmail.com)
 
