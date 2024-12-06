@@ -18,7 +18,7 @@ Features
 | top8  | 35  |
 complete list of information that can be gathered below
 
-####List 
+#### List 
 
 - name
 - region
@@ -33,9 +33,9 @@ complete list of information that can be gathered below
 - twitch
 - twitter
 - Legend (displayed as a .png)
-####Normal mode
+#### Normal mode
 Let you choose between 1v1 or 2v2 information from **ONE player only** to display.
-####Confrontation mode
+#### Confrontation mode
 Let you choose between 1v1 or 2v2 information from **TWO UP TO 4 players** to display.
 
 [Instalation guide](https://www.youtube.com/ "Instalation guide") / dependencies 
