@@ -42,14 +42,15 @@ async function getPlayerLegends(smashID, mode, player){
     
         const character = result.legends
         const name = character[0].name.toLowerCase() + '.png'
-        sharp('resources/playersImgs/' + name)
+        await sharp('resources/playersImgs/' + name)
         .toFile(`./stats/${mode}/${player}/splash.png`);
         return console.log(result)
       } catch (error) {
-        console.log("user doesnt have reported players") 
-        sharp('resources/playersImgs/random.png')
+        console.log("user doesnt have image") 
+        await sharp('resources/playersImgs/random.png')
         .toFile(`./stats/${mode}/${player}/splash.png`);
-      }
+    }
+    
 
       
 }
