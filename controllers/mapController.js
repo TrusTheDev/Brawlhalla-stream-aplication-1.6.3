@@ -23,8 +23,8 @@ async function getAllplayersValues() {
 
 async function getAllplayers(){
    process.stdout.write('\x1Bc');
-   const palabra = fs.readFileSync('resources/configs/lastoption.txt', 'utf8').trim();
-   console.log('----------->[' + palabra + ']<----------- \n');
+   const word = fs.readFileSync('resources/configs/lastoption.txt', 'utf8').trim();
+   console.log('----------->[' + word + ']<----------- \n');
      for(const key of mapPlayers.keys()){
        console.log(key)
      }

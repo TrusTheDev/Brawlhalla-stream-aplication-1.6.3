@@ -25,7 +25,7 @@ function question(question) {
       player = await question("\n")
       bool = await playerFound(player)
        if(bool == false){
-          console.log("Jugador no encontrado")
+          console.log("Player not found")
         }
        if(player == '0' || bool == true){
         break
@@ -34,7 +34,7 @@ function question(question) {
     return player
  }
 
-  function salirDelPrograma(){
+  function leaveProgram(){
     return process.exit(0);
   }
 
@@ -42,26 +42,26 @@ function question(question) {
 async function initSingleModeView() {
   let player;  
   getAllplayers()    
-  console.log('0: para ir atras \n');
+  console.log('0: go back \n');
   while(player != '0'){
-      console.log("Introduce el nombre del jugador")
+      console.log("introduce player name")
       player = await askForPlayer()
       if (player != '0'){
         await searchPlayerInfo1v1(player, 'player1')
       }
   }
       process.stdout.write('\x1Bc');
-      console.log("Retornando")
+      console.log("Returning...")
       return;
   }
 
 async function initDoubleModeView() {
   let player;  
   getAllplayers()    
-  console.log('0: para ir atras \n');
+  console.log('0: go back \n');
   while(player != '0'){
     for(i = 1; i<=2; i++ || player != '0'){
-        console.log("Introduce el nombre del jugador " + i)
+        console.log("Introduce player name " + i)
         player = await askForPlayer();
         if (player != '0'){
           await searchPlayerInfo2v2(player,`player${i}` )
@@ -69,18 +69,18 @@ async function initDoubleModeView() {
       }
   }  
     process.stdout.write('\x1Bc');
-    console.log("Retornando")
+    console.log("Returning")
     return;
   }
   
 async function initSingleConfrontMode(){
   let player;  
-  let cont = await countFoldersInDirectory('./stats/1v1')
+  let count = await countFoldersInDirectory('./stats/1v1')
   getAllplayers()    
-  console.log('0: para ir atras \n');
+  console.log('0: go back \n');
   while(player != '0'){
-    for(i = 1; i<=cont; i++ || player != '0'){
-        console.log("Introduce el nombre del jugador " + i)
+    for(i = 1; i<=count; i++ || player != '0'){
+        console.log("Introduce player name " + i)
         player = await askForPlayer();
         if (player != '0'){
           await searchPlayerInfo1v1(player,`player${i}`)
@@ -88,7 +88,7 @@ async function initSingleConfrontMode(){
       }
   }  
     process.stdout.write('\x1Bc');
-    console.log("Retornando")
+    console.log("Returning")
     return;
 }
 
@@ -96,10 +96,10 @@ async function initDoubleConfrontMode(){
   let player;  
   let cont = await countFoldersInDirectory('./stats/2v2')
   getAllplayers()    
-  console.log('0: para ir atras \n');
+  console.log('0: go back \n');
   while(player != '0'){
     for(i = 1; i<=cont; i++ || player != '0'){
-        console.log("Introduce el nombre del jugador " + i)
+        console.log("Introduce player name " + i)
         player = await askForPlayer();
         if (player != '0'){
           await searchPlayerInfo2v2(player,`player${i}`)
@@ -107,7 +107,7 @@ async function initDoubleConfrontMode(){
       }
   }  
     process.stdout.write('\x1Bc');
-    console.log("Retornando")
+    console.log("Returning")
     return;
 }  
   
@@ -115,11 +115,11 @@ async function getAllplayersOption(){
   process.stdout.write('\x1Bc');
   let option = "";
   while(option != "0"){
-    option = await question("¿listar?, ingrese cualquier tecla, 0: para salir. ")
+    option = await question("list?, type any character ")
     getAllplayersValues();
     if(option == "0"){
       process.stdout.write('\x1Bc');
-      console.log("retornando")
+      console.log("returning")
       return;
     }
   }
@@ -127,8 +127,8 @@ async function getAllplayersOption(){
 
   async function about(){
     process.stdout.write('\x1Bc');
-    console.log("Programa desarrollado por Mr.ivansito y maxy, todos los derechos reservados")
-    console.log("Retornando")
+    console.log("Program developed by Mr.ivansito and maxy ")
+    console.log("Returning")
     return;
   }
 
@@ -148,7 +148,7 @@ async function getAllplayersOption(){
 
   module.exports = {
     question,
-    salirDelPrograma,
+    leaveProgram,
     initSingleModeView,
     getAllplayers,
     about,

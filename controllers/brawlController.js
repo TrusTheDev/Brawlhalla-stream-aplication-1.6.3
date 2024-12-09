@@ -13,7 +13,7 @@ async function FindPlayer(id, mode, player) {
     fs.writeFileSync(`./stats/${mode}/${player}/twitter.txt`, result.player.twitter.toString() , 'utf8');
     fs.writeFileSync(`./stats/${mode}/${player}/country.txt`, result.player.country.toString() , 'utf8');
     return console.log(result)
-    }catch (e) {console.log("Error con el id")}
+    }catch (e) {console.log("error with id")}
 }
 
 async function GetPlayerPr(id,gm,mode,player){
@@ -32,7 +32,7 @@ async function GetPlayerPr(id,gm,mode,player){
         fs.writeFileSync(`./stats/${mode}/${player}/pr.txt`, result.pr.powerRanking.toString() , 'utf8');
     }
     return console.log(result)
-    } catch (e){console.log("Error con el id o gm")}
+    } catch (e){console.log("error with id or gm")}
 }
 
 //Tenes que poner el smashID adentro del arreglo ES UNA MIERDA ESTO
@@ -40,13 +40,13 @@ async function getPlayerLegends(smashID, mode, player){
     try {
     const result = await sdk.getPlayerLegends({entrantSmashIds: smashID,maxResults: 1,isOfficial: false})
     
-        const personaje = result.legends
-        const nombre = personaje[0].name.toLowerCase() + '.png'
-        sharp('resources/playersImgs/' + nombre)
+        const character = result.legends
+        const name = character[0].name.toLowerCase() + '.png'
+        sharp('resources/playersImgs/' + name)
         .toFile(`./stats/${mode}/${player}/splash.png`);
         return console.log(result)
       } catch (error) {
-        console.log("Usuario no tiene personajes reportados u hubo un error con el nombre") 
+        console.log("user doesnt have reported players") 
         sharp('resources/playersImgs/random.png')
         .toFile(`./stats/${mode}/${player}/splash.png`);
       }
@@ -54,8 +54,8 @@ async function getPlayerLegends(smashID, mode, player){
       
 }
 
-async function playerInfoRandom(nombre, mode, player){
-    fs.writeFileSync(`./stats/${mode}/${player}/name.txt`, nombre, 'utf8');
+async function playerInfoRandom(name, mode, player){
+    fs.writeFileSync(`./stats/${mode}/${player}/name.txt`, name, 'utf8');
     fs.writeFileSync(`./stats/${mode}/${player}/earnings.txt`, "0" , 'utf8');
     fs.writeFileSync(`./stats/${mode}/${player}/pr.txt`, "0" , 'utf8');
     fs.writeFileSync(`./stats/${mode}/${player}/top32.txt`, "0" , 'utf8');
@@ -63,36 +63,36 @@ async function playerInfoRandom(nombre, mode, player){
     fs.writeFileSync(`./stats/${mode}/${player}/0bronze.txt`, "0" , 'utf8');
     fs.writeFileSync(`./stats/${mode}/${player}/0gold.txt`, "0" , 'utf8');
     fs.writeFileSync(`./stats/${mode}/${player}/0silver.txt`, "0" , 'utf8');
-    fs.writeFileSync(`resources/configs/lastoption.txt`, nombre , 'utf8');
+    fs.writeFileSync(`resources/configs/lastoption.txt`, name , 'utf8');
     sharp('resources/playersImgs/random.png').toFile(`./stats/${mode}/${player}/splash.png`);
     console.log(result)
 
 }
 
-async function searchPlayerInfo1v1(nombre,player) {
+async function searchPlayerInfo1v1(name,player) {
     console.log(player)
     try{
-    var result = GetPlayerPr(mapPlayers.get(nombre), 1, "1v1", player);
+    var result = GetPlayerPr(mapPlayers.get(name), 1, "1v1", player);
     console.log(result)
-    var result = FindPlayer(mapPlayers.get(nombre), "1v1", player);
+    var result = FindPlayer(mapPlayers.get(name), "1v1", player);
     console.log(result)
-    const array = [mapPlayers.get(nombre)];
+    const array = [mapPlayers.get(name)];
     console.log(result)  
     var result = getPlayerLegends(array, "1v1", player);
-    fs.writeFileSync("resources/configs/lastoption.txt", nombre , 'utf8');
+    fs.writeFileSync("resources/configs/lastoption.txt", name , 'utf8');
     } catch (e) {console.log("Nombre inválido")}
   }
 
-async function searchPlayerInfo2v2(nombre,player) {
+async function searchPlayerInfo2v2(name,player) {
     try{
-    var result = GetPlayerPr(mapPlayers.get(nombre), 2, "2v2", player);
+    var result = GetPlayerPr(mapPlayers.get(name), 2, "2v2", player);
     console.log(result)
-    var result = FindPlayer(mapPlayers.get(nombre), "2v2", player);
+    var result = FindPlayer(mapPlayers.get(name), "2v2", player);
     console.log(result)
-    const array = [mapPlayers.get(nombre)];
+    const array = [mapPlayers.get(name)];
     console.log(result)  
     var result = getPlayerLegends(array, "2v2", player);
-    fs.writeFileSync("resources/configs/lastoption.txt", nombre , 'utf8');
+    fs.writeFileSync("resources/configs/lastoption.txt", name , 'utf8');
     } catch (e) {console.log("Nombre inválido")}
   }
 
@@ -107,7 +107,7 @@ async function searchPlayerInfo2v2(nombre,player) {
         // Retornar la cantidad de carpetas encontradas
         return directories.length;
     } catch (error) {
-        console.error('Error al leer el directorio:', error);
+        console.error('Error while readin dir :', error);
         return 0;  // Retorna 0 si ocurre un error
     }
 }

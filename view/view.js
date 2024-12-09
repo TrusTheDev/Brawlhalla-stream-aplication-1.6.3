@@ -1,9 +1,9 @@
-const { question, salirDelPrograma, initSingleModeView, displayLogo, about, getAllplayersOption, initDoubleModeView,initSingleConfrontMode, initDoubleConfrontMode } = require('../controllers/viewController')
+const { question, leaveProgram, initSingleModeView, displayLogo, about, getAllplayersOption, initDoubleModeView,initSingleConfrontMode, initDoubleConfrontMode } = require('../controllers/viewController')
 const { pushToMap } = require('../controllers/mapController')
 async function main() {
-    console.log("Iniciando el programa...");
+    console.log("Initializing program...");
     await displayLogo()
-    console.log("Bienvenido a ballstats!, porfavor elija una opción \n 0: salir del programa \n 1: Modo normal \n 2: Modo enfrentamiento \n 3: listar jugadores \n 4: about \n")
+    console.log("Welcome to Ballstats!, please choose an option \n 0: leave program \n 1: normal mode \n 2: confrontation mode \n 3: List players \n 4: about \n")
     let option = ""
     while(option != '0'){
         pushToMap()
@@ -12,11 +12,11 @@ async function main() {
         
         case "0": 
             console.log(" Saliendo del programa");
-            salirDelPrograma();
+            leaveProgram();
 
         case '1': 
-            option = await question("1 para singles 2 para doubles");
-            console.log(' Iniciando programa ');
+            option = await question("press 1 for singles 2 for doubles");
+            console.log('Initializing program');
             if(option == '1'){
                 await initSingleModeView();
             }
@@ -27,7 +27,7 @@ async function main() {
             break;
 
         case '2': 
-            option = await question("1 para singles 2 para doubles");
+            option = await question("press 1 for singles 2 for doubles");
             console.log(' Iniciando programa ');
             if(option == '1'){
                 await initSingleConfrontMode();
@@ -39,7 +39,7 @@ async function main() {
             break;
         case '3': 
             //Solucionar refresh
-            console.log("Listando jugadores ");
+            console.log("Listing players, 0: to return ");
             await getAllplayersOption();
             main()
             break;
@@ -51,7 +51,7 @@ async function main() {
             break;  
       
         default:    
-            console.log("opción inválida");
+            console.log("invalid option");
             process.exit(0);
         }
     } 
