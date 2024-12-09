@@ -1,6 +1,22 @@
 # Ballstats 1.6.2
 
 
+1. [Description](#description)
+2. [Features](#features)
+   - [Normal Mode](#normal-mode)
+   - [Confrontation Mode](#confrontation-mode)
+3. [Installation Guide / Dependencies](#instalation-guide-dependencies)
+4. [Common Problems](#common-problems)
+   - [Windows Script Host](#windows-script-host)
+5. [How to Use](#how-to-use)
+   - [Excel Table](#excel-table)
+   - [Stats Website](#stats-website)
+   - [Output](#output)
+6. [FAQ](#faq)
+7. [About](#about)
+8. [Contact Info](#contact-info)
+9. [License](#license)
+
 ## Description
 -------------
 This desktop application retrieves player data from the Brawlhalla API and stores it in text files dynamically for use in programs like OBS Studio. By referencing a player list in an Excel table with associated IDs, the app automatically fetches relevant information when a player's name is entered, updating the text files for seamless integration with OBS.
