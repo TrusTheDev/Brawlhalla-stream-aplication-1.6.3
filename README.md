@@ -61,7 +61,7 @@ Let you choose between 1v1 or 2v2 information from **TWO UP TO 4 players** to di
 * [xlsx](https://www.npmjs.com/package/xlsx "xlsx")
 1. either Clone the repo or download as ZIP from <> Code green button
 2. Unzip wherever you want
-3. **download dependencies**, open command prompt from the main file and paste:
+3. **download dependencies**, after downloading node.js, open command prompt from the main file and paste:
 
 `npm i @bmg-esports/sdk`
 
@@ -106,6 +106,11 @@ Powers ids matches with first table, now lets see if the desktop app does it.
 
 consoles shows the information gathered and put it in the .txt files to use, you can continue writing player names until satisfied, as long as their names are in the excel table and the id actually matches.
 players.txt files are located in Brawlhalla-stream-aplication-1.6.3-main\stats\mode-you-picked,  in normal mode player info's its **always player1 dir**
+
+### Should look like this
+-------------
+
+![](https://media.discordapp.net/attachments/842799544810602508/1310696751703003157/ballstat.gif?ex=6757f539&is=6756a3b9&hm=095e0568e897fa44d30637da16d04d0e07cc6f8df4dc6f635030400ab78985cd&=&width=320&height=180)
 
 ## FAQ
 -------------
