@@ -105,6 +105,7 @@ Powers ids matches with first table, now lets see if the desktop app does it.
 ![](https://i.imgur.com/9vmeoa4.png)
 
 consoles shows the information gathered and put it in the .txt files to use, you can continue writing player names until satisfied, as long as their names are in the excel table and the id actually matches.
+players.txt files are located in Brawlhalla-stream-aplication-1.6.3-main\stats\mode-you-picked,  in normal mode player info's its **always player1 dir**
 
 ## FAQ
 -------------
