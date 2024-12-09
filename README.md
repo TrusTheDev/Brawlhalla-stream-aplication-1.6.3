@@ -67,7 +67,7 @@ Let you choose between 1v1 or 2v2 information from **TWO UP TO 4 players** to di
 
 also paste:
 
-`npm i xlxs`
+`npm i xlsx`
 
 **Should work now.**
 
