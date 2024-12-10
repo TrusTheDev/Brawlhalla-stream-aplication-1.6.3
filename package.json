@@ -1,13 +1,13 @@
 {
-  "name": "balstats",
-  "version": "1.1.0",
-  "description": "Aplicacion de BAL hecha para reflegar información de la API de BMG a una transmisión",
-  "main": "Main.js",
+  "name": "ballstats",
+  "version": "1.6.3",
+  "description": "This desktop application retrieves player data from the Brawlhalla API and stores it in text files dynamically for use in programs like OBS Studio. By referencing a player list in an Excel table with associated IDs, the app automatically fetches relevant information when a player's name is entered, updating the text files for seamless integration with OBS.",
+  "main": "ballstats.js",
   "bin": {
-    "balstats": "./Main.js"
+    "Brawlhalla-stream-aplication-1.6.3-main": "./ballstats.js"
   },
   "scripts": {
-    "start": "node main.js"
+    "start": "node ballstats.js"
   },
   "author": " Ivan Viegas & Maximiliano Ballerini",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "@bmg-esports/sdk": "^1.0.7",
     "jimp": "^1.6.0",
     "pkg": "^5.8.1",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "xlsx": "^0.18.5"
   },
   "pkg": {
     "assets": [
