@@ -77,7 +77,6 @@ here you have a collection of [splash arts](https://drive.google.com/file/d/1dnm
 -------------
 
 #### Windows Script Host
--------------
 ![](https://i.imgur.com/QqLS0yil.png)
 
 This means that you are compiling the program with any other program rather node.js, to solve this go to ballstats.js > properties > Opens with: and change to Node.js Javascript Runtime, Apply and you are ready to go.
