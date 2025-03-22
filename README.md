@@ -127,7 +127,3 @@ Program developed by Mr.Ivansito, Maxy
 ## Contact info
 [Mr.Ivansito](mailto:ivanbordeira2015@hotmail.com)
 [Maxy](mailto:maxib193@gmail.com)
-
-## License
-
-MIT
